@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/avis?useSSL=false
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/
+  servlet:
+    multipart:
+      max-file-size: 8MB
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: beans
+server:
+  error:
+    path: /erreur
