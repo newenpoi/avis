@@ -26,7 +26,7 @@ public class PlateForme {
 	@NotBlank(message = "Le nom ne peut être vide !")
     private String nom;
 
-    @ManyToMany
+	@ManyToMany(mappedBy = "plateformes")
     private List<Jeu> jeux;
 
 }
