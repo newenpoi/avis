@@ -139,7 +139,7 @@ public class InitController implements CommandLineRunner {
 	public Long ajouterJeux(int limit, Long ms) {
 		HashMap<String, Jeu> jeux = new HashMap<String, Jeu>();
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < limit; i++) {
 			// Déclaration des données fausses.
 			String nom = faker.name().lastName();
 			String description = faker.lorem().paragraph(2);
@@ -148,7 +148,12 @@ public class InitController implements CommandLineRunner {
         	if (jeux.containsKey(nom)) continue;
 			
 			// Déclaration du jeu.
-			Jeu jeu = new Jeu(nom, description, LocalDate.now(), "/src/image/image.png");
+			Jeu jeu = new Jeu();
+			
+			jeu.setNom(nom);
+			jeu.setDescription(description);
+			jeu.setDateSortie(LocalDate.now());
+			jeu.setImage("/src/image/image.png");
 			
 			jeu.setGenre(genreDao.findById(entreeAleatoire(genreDao.count())).orElse(null));
 			jeu.setEditeur(editeurDao.findById(entreeAleatoire(editeurDao.count())).orElse(null));
