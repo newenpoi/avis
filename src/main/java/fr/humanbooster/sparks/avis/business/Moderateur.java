@@ -20,4 +20,8 @@ public class Moderateur extends Utilisateur {
 	@Pattern(regexp = "^(?:(?:\\+|00)33|0)\s*[1-9](?:[\s.-]*\\d{2}){4}$", message = "Le numéro de téléphone doit être valide !")
     private String numeroDeTelephone;
 
+	public Moderateur(String pseudo, String motDePasse, String email, String numeroDeTelephone) {
+		super(pseudo, motDePasse, email);
+		this.numeroDeTelephone = numeroDeTelephone;
+	}
 }

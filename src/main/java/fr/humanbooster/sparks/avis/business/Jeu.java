@@ -3,7 +3,7 @@ package fr.humanbooster.sparks.avis.business;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +31,7 @@ public class Jeu {
     private Long id;
 
 	@NotBlank(message = "Le nom ne peut être vide !")
+	@Column(unique = true, length = 32)
     private String nom;
 
 	@Size(min = 8, max = 255, message = "La description du jeu doit être comprise entre 8 et 255 caractères.")
@@ -50,8 +51,8 @@ public class Jeu {
     @ManyToOne
     private Classification classification;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "jeu_plateforme", joinColumns = @JoinColumn(name = "plateforme_id"), inverseJoinColumns = @JoinColumn(name = "jeu_id"))
+    @ManyToMany
+    @JoinTable(name = "jeu_plateformes", joinColumns = @JoinColumn(name = "plateforme_id"), inverseJoinColumns = @JoinColumn(name = "jeu_id"))
     private List<PlateForme> plateformes;
 
     @ManyToOne

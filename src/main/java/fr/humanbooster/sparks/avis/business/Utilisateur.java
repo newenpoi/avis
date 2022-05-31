@@ -41,5 +41,11 @@ public abstract class Utilisateur {
 	@Email
 	@Column(unique = true, nullable = false, length = 255)
     protected String email;
+	
+	public Utilisateur(String pseudo, String motDePasse, String email) {
+		this.pseudo = pseudo;
+		this.motDePasse = motDePasse;
+		this.email = email;
+	}
 
 }

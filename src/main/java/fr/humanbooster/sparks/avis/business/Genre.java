@@ -28,5 +28,9 @@ public class Genre {
 
 	@OneToMany(mappedBy = "genre")
     private Set<Jeu> jeux;
+	
+	public Genre(String nom) {
+		this.nom = nom;
+	}
 
 }

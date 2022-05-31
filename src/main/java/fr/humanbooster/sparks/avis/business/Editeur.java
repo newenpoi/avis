@@ -29,4 +29,7 @@ public class Editeur {
 	@OneToMany(mappedBy = "editeur")
     private Set<Jeu> jeux;
 
+	public Editeur(String nom) {
+		this.nom = nom;
+	}
 }

@@ -2,6 +2,7 @@ package fr.humanbooster.sparks.avis.business;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,10 @@ public class PlateForme {
 	@NotBlank(message = "Le nom ne peut être vide !")
     private String nom;
 
-	@ManyToMany(mappedBy = "plateformes")
+	@ManyToMany(mappedBy = "plateformes", cascade = CascadeType.ALL)
     private List<Jeu> jeux;
 
+	public PlateForme(String nom) {
+		this.nom = nom;
+	}
 }
