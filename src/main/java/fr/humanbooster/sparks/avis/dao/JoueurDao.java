@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import fr.humanbooster.sparks.avis.business.Joueur;
 
 public interface JoueurDao extends JpaRepository<Joueur, Long>  {
-
+	Joueur findByEmail(String email);
 }
