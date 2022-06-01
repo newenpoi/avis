@@ -4,6 +4,6 @@ import fr.humanbooster.sparks.avis.business.Joueur;
 
 public interface JoueurService {
 
-	Joueur recupererJoueur(String email, String motDePasse);
+	Joueur recupererJoueur(String pseudo, String motDePasse);
 
 }
