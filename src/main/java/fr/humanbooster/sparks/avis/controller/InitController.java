@@ -140,9 +140,8 @@ public class InitController implements CommandLineRunner {
 		HashMap<String, Jeu> jeux = new HashMap<String, Jeu>();
 		
 		for (int i = 0; i < limit; i++) {
-			// Déclaration des données fausses.
-			String nom = faker.name().lastName();
-			String description = faker.lorem().paragraph(2);
+			// Déclaration d'un faux nom de jeu (on squatte la méthode username()).
+			String nom = faker.name().username();
 			
         	// Refait un tour de boucle si la clé existe déjà.
         	if (jeux.containsKey(nom)) continue;
@@ -151,7 +150,7 @@ public class InitController implements CommandLineRunner {
 			Jeu jeu = new Jeu();
 			
 			jeu.setNom(nom);
-			jeu.setDescription(description);
+			jeu.setDescription(faker.lorem().paragraph(2));
 			jeu.setDateSortie(LocalDate.now());
 			jeu.setImage("/src/image/image.png");
 			
