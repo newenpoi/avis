@@ -7,11 +7,11 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Stargazer</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
 </head>
 <body>
     <form method="post" action="/connexion">
-    	<c:if test="${erreur ne null}">${erreur}</c:if>
+    	<p><c:if test="${param.erreur ne null}">${param.erreur}</c:if></p>
         
         <input type="text" name="pseudo" placeHolder="Pseudo" required>
         <input type="password" name="motDePasse" placeHolder="Mot de Passe" required>

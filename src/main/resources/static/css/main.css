@@ -1,0 +1,9 @@
+:root {
+	--font-main: 'Verdana';
+	--font-game: 'VT323', monospace;
+}
+
+.icon {}
+.icon-s { width: 32px; height: 32px}
+
+.thead { font-family: var(--font-game); font-size: 16pt}

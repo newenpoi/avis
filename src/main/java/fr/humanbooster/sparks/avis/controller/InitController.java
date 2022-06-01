@@ -141,7 +141,7 @@ public class InitController implements CommandLineRunner {
 		
 		for (int i = 0; i < limit; i++) {
 			// Déclaration d'un faux nom de jeu (on squatte la méthode username()).
-			String nom = faker.name().username();
+			String nom = faker.company().name();
 			
         	// Refait un tour de boucle si la clé existe déjà.
         	if (jeux.containsKey(nom)) continue;
