@@ -19,28 +19,33 @@ public class IndexController {
 	private final JoueurService joueurService;
 	private final HttpSession httpSession;
 	
-	@GetMapping({"/", "index"})
-	public ModelAndView index() {
+	@GetMapping({"/", "/index"})
+	public ModelAndView indexGet() {
+		// Récupère la session éventuelle du joueur.
+		Joueur joueur = (Joueur) httpSession.getAttribute("joueur");
+		
+		// Si le joueur est authentifié le rediriger vers /avis.
+		if (joueur != null) return new ModelAndView("redirect:/avis");
+		
 		return new ModelAndView("index");
 	}
 	
 	@PostMapping("/connexion")
-	public ModelAndView connexionPost(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse) {
+	public ModelAndView connexionPost(@RequestParam("pseudo") String pseudo, @RequestParam("motDePasse") String motDePasse) {
 		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("redirect:/index");
 
 		// Tentative de connexion de l'utilisateur.
-		Joueur joueur = joueurService.recupererJoueur(email, motDePasse);
+		Joueur joueur = joueurService.recupererJoueur(pseudo, motDePasse);
 		
 		// Si aucun utilisateur n'est récupéré ou que le mot de passe ne correspond pas.
-		if (joueur == null || joueur.getMotDePasse() != motDePasse) {
-			mav.setViewName("connexion");
+		if (joueur == null || !joueur.getMotDePasse().equals(motDePasse)) {
 			mav.addObject("erreur", "Identifiants Incorrects");
 		}
 		else {
-			// Les identifiants sont corrects, ajout d'une session et de son attribut.
+			// Les identifiants sont corrects, ajout d'une session et de son attribut, redirection.
 			httpSession.setAttribute("joueur", joueur);
-			return new ModelAndView("redirect:avis");
+			return new ModelAndView("redirect:/avis");
 		}
 
 		return mav;
