@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -42,26 +44,32 @@ public class Jeu {
     @NotBlank(message = "Le jeu doit au moins fournir une capture !")
     private String image;
 
+    @ToString.Exclude
     @ManyToOne
     private Genre genre;
 
+    @ToString.Exclude
     @ManyToOne
     private Editeur editeur;
 
+    @ToString.Exclude
     @ManyToOne
     private Classification classification;
 
-    @ManyToMany
+    @ToString.Exclude
+    @ManyToMany()
     @JoinTable(name = "jeu_plateformes", joinColumns = @JoinColumn(name = "plateforme_id"), inverseJoinColumns = @JoinColumn(name = "jeu_id"))
     private List<PlateForme> plateformes;
 
+    @ToString.Exclude
     @ManyToOne
     private ModeleEconomique modeleEconomique;
 
     @ManyToOne
     private Moderateur moderateur;
 
-    @OneToMany(mappedBy = "jeu")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "jeu", fetch = FetchType.EAGER)
     private List<Avis> avis;
 
 }

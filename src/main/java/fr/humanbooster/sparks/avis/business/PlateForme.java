@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class PlateForme {
 	@NotBlank(message = "Le nom ne peut être vide !")
     private String nom;
 
-	@ManyToMany(mappedBy = "plateformes", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "plateformes", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Jeu> jeux;
 
 	public PlateForme(String nom) {

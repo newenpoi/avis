@@ -3,6 +3,7 @@ package fr.humanbooster.sparks.avis.business;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -26,8 +28,9 @@ public class Genre {
 	@NotBlank(message = "Le nom ne peut être vide !")
     private String nom;
 
-	@OneToMany(mappedBy = "genre")
-    private Set<Jeu> jeux;
+	@ToString.Exclude
+	@OneToMany(mappedBy = "genre", fetch = FetchType.EAGER)
+    private List<Jeu> jeux;
 	
 	public Genre(String nom) {
 		this.nom = nom;

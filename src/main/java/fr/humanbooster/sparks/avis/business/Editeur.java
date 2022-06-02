@@ -27,7 +27,7 @@ public class Editeur {
     private String nom;
 
 	@OneToMany(mappedBy = "editeur")
-    private Set<Jeu> jeux;
+    private List<Jeu> jeux;
 
 	public Editeur(String nom) {
 		this.nom = nom;

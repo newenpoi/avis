@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 
@@ -22,7 +23,7 @@ public class Joueur extends Utilisateur {
 	@Past(message = "Hein !? Attends tu te fou de moi ! Ce joueur n'est même pas encore né !")
     private LocalDate dateDeNaissance;
 
-	@OneToMany(mappedBy = "joueur")
+	@OneToMany(mappedBy = "joueur", fetch = FetchType.EAGER)
     private List<Avis> avis;
 
 	public Joueur(String pseudo, String motDePasse, String email, LocalDate dateDeNaissance) {

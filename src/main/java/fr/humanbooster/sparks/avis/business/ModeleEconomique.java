@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -26,6 +27,7 @@ public class ModeleEconomique {
 	@NotBlank(message = "Le nom ne peut être vide !")
     private String nom;
 
+	@ToString.Exclude
 	@OneToMany(mappedBy = "modeleEconomique")
     private List<Jeu> jeux;
 

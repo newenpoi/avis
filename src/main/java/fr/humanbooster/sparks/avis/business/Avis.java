@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Range;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -38,9 +39,11 @@ public class Avis {
     @ManyToOne
     private Moderateur moderateur;
 
+    @ToString.Exclude
     @ManyToOne
     private Joueur joueur;
 
+    @ToString.Exclude
     @ManyToOne
     private Jeu jeu;
 
