@@ -31,7 +31,7 @@ public class AvisController {
 		mav.addObject("avis", avisService.recupererAvis());
 		
 		// Renvoyer la vue.
-		return new ModelAndView("/avis");
+		return mav;
 	}
 	
 	@GetMapping("/avis/ajouter")
@@ -45,7 +45,10 @@ public class AvisController {
 	@PostMapping("/avis/ajouter")
 	public ModelAndView avisPost(@RequestParam("jeu") Long idJeu, @RequestParam("description") String description, @RequestParam("note") float note) {
 		
-		Avis avis = avisService.ajouterAvis(idJeu, description, note, (Joueur) httpSession.getAttribute("joueur"));
+		Joueur joueur = (Joueur) httpSession.getAttribute("joueur");
+		Avis avis = avisService.ajouterAvis(idJeu, description, note, joueur);
+		
+		// Alerte, crash (stack overflow) si les annotations ToString.Exclude ne sont pas définies sur joueur et jeu de la classé métier Avis.
 		System.out.println(avis);
 		
 		return new ModelAndView("redirect:/avis");

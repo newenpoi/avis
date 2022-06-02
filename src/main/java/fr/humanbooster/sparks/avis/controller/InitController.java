@@ -154,6 +154,7 @@ public class InitController implements CommandLineRunner {
 			jeu.setDateSortie(LocalDate.now());
 			jeu.setImage("/src/image/image.png");
 			
+			// Récupère des entrées en base de données avec l'aide de la méthode entreeAleatoire.
 			jeu.setGenre(genreDao.findById(entreeAleatoire(genreDao.count())).orElse(null));
 			jeu.setEditeur(editeurDao.findById(entreeAleatoire(editeurDao.count())).orElse(null));
 			jeu.setClassification(classificationDao.findById(entreeAleatoire(classificationDao.count())).orElse(null));
