@@ -2,6 +2,8 @@ package fr.humanbooster.sparks.avis.service.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import fr.humanbooster.sparks.avis.business.Jeu;
@@ -23,6 +25,11 @@ public class JeuServiceImpl implements JeuService {
 	@Override
 	public List<Jeu> recupererJeux() {
 		return jeuDao.findAll();
+	}
+
+	@Override
+	public Jeu ajouterJeu(@Valid Jeu jeu) {
+		return jeuDao.save(jeu);
 	}
 
 }

@@ -1,5 +1,7 @@
 package fr.humanbooster.sparks.avis.service.impl;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import fr.humanbooster.sparks.avis.business.Joueur;
@@ -16,6 +18,11 @@ public class JoueurServiceImpl implements JoueurService {
 	@Override
 	public Joueur recupererJoueur(String pseudo, String motDePasse) {
 		return joueurDao.findByPseudo(pseudo);
+	}
+
+	@Override
+	public Joueur ajouterJoueur(@Valid Joueur joueur) {
+		return joueurDao.save(joueur);
 	}
 
 }

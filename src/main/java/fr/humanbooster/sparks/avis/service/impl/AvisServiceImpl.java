@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import fr.humanbooster.sparks.avis.business.Avis;
-import fr.humanbooster.sparks.avis.business.Jeu;
 import fr.humanbooster.sparks.avis.business.Joueur;
 import fr.humanbooster.sparks.avis.dao.AvisDao;
 import fr.humanbooster.sparks.avis.service.AvisService;
 import fr.humanbooster.sparks.avis.service.JeuService;
+import fr.humanbooster.sparks.avis.util.Color;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -27,6 +27,7 @@ public class AvisServiceImpl implements AvisService {
 
 	@Override
 	public Avis ajouterAvis(Avis avis) {
+		System.out.println(Color.red("Service Save..."));
 		return avisDao.save(avis);
 	}
 
