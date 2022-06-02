@@ -7,7 +7,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Stargazer</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
 </head>
 <body>
     <form method="post" action="/connexion">
