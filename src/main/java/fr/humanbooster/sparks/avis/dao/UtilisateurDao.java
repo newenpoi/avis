@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import fr.humanbooster.sparks.avis.business.Utilisateur;
 
 public interface UtilisateurDao extends JpaRepository<Utilisateur, Long>  {
+
+	Utilisateur findByPseudo(String pseudo);
 	
 }
