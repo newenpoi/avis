@@ -40,3 +40,8 @@ form { font-family: "Verdana" }
 	border-radius: 1.3em;
 	padding: 3rem 2.4rem !important;
 }
+
+.card-img-wrapper {
+	height: 60vh;
+	overflow: hidden;
+}
