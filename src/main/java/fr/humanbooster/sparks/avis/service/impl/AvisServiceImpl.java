@@ -3,6 +3,8 @@ package fr.humanbooster.sparks.avis.service.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.humanbooster.sparks.avis.business.Avis;
@@ -55,6 +57,11 @@ public class AvisServiceImpl implements AvisService {
 		
 		// return avisDao.save(jeu);
 		return avisDao.save(avis);
+	}
+
+	@Override
+	public Page<Avis> recupererAvis(Pageable withPage) {
+		return avisDao.findAll(withPage);
 	}
 
 }
