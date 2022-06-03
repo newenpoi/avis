@@ -11,5 +11,7 @@ public interface JeuService {
 	Jeu recupererJeu(Long idJeu);
 	List<Jeu> recupererJeux();
 	Jeu ajouterJeu(@Valid Jeu jeu);
+	Jeu updateJeu(@Valid Jeu jeu);
+	void supprimerJeu(Long idJeu);
 
 }

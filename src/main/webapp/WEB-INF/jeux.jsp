@@ -31,17 +31,23 @@
 					<td>${jeu.nom}</td>
 					<td>${jeu.editeur.nom}</td>
 					<td>
-						<a href="#" title="Voir">Visualiser</a>
-						<a href="#" title="Modifier">Modifier</a>
-						<a href="#" title="Téléverser une Image">Téléverser une Image</a>
-						<a href="#" title="Supprimer">Supprimer</a>
+						<a href="/jeux/voir?idJeu=${jeu.id}" title="Voir">Visualiser</a>
+						
+						<c:if test="${sessionScope.utilisateur.getClass().getSimpleName() eq 'Moderateur'}">
+							<a href="/jeux/modifier?idJeu=${jeu.id}" title="Modifier">Modifier</a>
+							<a href="#" title="Téléverser une Image">Téléverser une Image</a>
+							<a href="/jeux/supprimer?idJeu=${jeu.id}" title="Supprimer">Supprimer</a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<ul class="list-group list-group-horizontal">
-		<li class="list-group-item"><a href="/jeux/ajouter" title="Ajouter un Jeu">Ajouter un Jeu</a></li>
+		<c:if test="${sessionScope.utilisateur.getClass().getSimpleName() eq 'Moderateur'}">
+			<li class="list-group-item"><a href="/jeux/ajouter" title="Ajouter un Jeu">Ajouter un Jeu</a></li>
+		</c:if>
+		
 		<li class="list-group-item"><a href="/avis" title="Liste des Avis">Liste des Avis</a></li>
 	</ul>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

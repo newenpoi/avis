@@ -32,4 +32,14 @@ public class JeuServiceImpl implements JeuService {
 		return jeuDao.save(jeu);
 	}
 
+	@Override
+	public void supprimerJeu(Long idJeu) {
+		jeuDao.deleteById(idJeu);
+	}
+
+	@Override
+	public Jeu updateJeu(@Valid Jeu jeu) {
+		return jeuDao.save(jeu);
+	}
+
 }

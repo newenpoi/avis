@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.humanbooster.sparks.avis.business.Jeu;
@@ -37,7 +38,6 @@ public class JeuController {
 		
 		// Récupère la liste de jeux depuis le service.
 		mav.addObject("jeux", jeuService.recupererJeux());
-		
 		
 		return mav;
 	}
@@ -71,5 +71,59 @@ public class JeuController {
 		jeuService.ajouterJeu(jeu);
 		
 		return new ModelAndView("redirect:/");
+	}
+	
+	@GetMapping("/jeux/modifier")
+	public ModelAndView jeuxModifierGet(@RequestParam("idJeu") Long idJeu) {
+		
+		// Déclaration.
+		ModelAndView mav = new ModelAndView("jeux-modifier");
+		
+		// Récupère les informations du jeu par son identifiant.
+		Jeu jeu = jeuService.recupererJeu(idJeu);
+		mav.addObject(jeu);
+		
+		mav.addObject("editeurs", editeurService.recupererEditeurs());
+		mav.addObject("genres", genreService.recupererGenres());
+		mav.addObject("classifications", classificationService.recupererClassifications());
+		mav.addObject("plateformes", plateformeService.recupererPlateformes());
+		mav.addObject("modelesEconomiques", modeleEconomiqueService.recupererModelesEconomiques());
+		
+		return mav;
+	}
+	
+	@PostMapping("jeux/modifier")
+	public ModelAndView jeuxModifierPost(@Valid @ModelAttribute("jeu") Jeu jeu, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			
+			ModelAndView mav = jeuxAjouterGet(jeu);
+			mav.setViewName("jeux-modifier");
+			
+			mav.addObject("jeu", jeu);
+			mav.addObject("errors", result.getAllErrors());
+			
+			return mav;
+		}
+		
+		jeuService.updateJeu(jeu);
+		
+		return new ModelAndView("redirect:/jeux");
+	}
+	
+	@GetMapping("/jeux/supprimer")
+	public ModelAndView jeuxDelete(@RequestParam("idJeu") Long idJeu) {
+		
+		jeuService.supprimerJeu(idJeu);
+		
+		return new ModelAndView("redirect:/jeux");
+	}
+	
+	@GetMapping("jeux/voir")
+	public ModelAndView jeuxVoirGet(@RequestParam("idJeu") Long idJeu) {
+		ModelAndView mav = new ModelAndView("jeux-voir");
+		mav.addObject("jeu", jeuService.recupererJeu(idJeu));
+		
+		return mav;
 	}
 }
