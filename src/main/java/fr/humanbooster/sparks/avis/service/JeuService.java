@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import fr.humanbooster.sparks.avis.business.Jeu;
 
 public interface JeuService {
@@ -13,5 +16,6 @@ public interface JeuService {
 	Jeu ajouterJeu(@Valid Jeu jeu);
 	Jeu updateJeu(@Valid Jeu jeu);
 	void supprimerJeu(Long idJeu);
+	Page<Jeu> recupererJeux(Pageable withPage);
 
 }

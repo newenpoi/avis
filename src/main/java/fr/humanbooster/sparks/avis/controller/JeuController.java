@@ -1,7 +1,10 @@
 package fr.humanbooster.sparks.avis.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,21 +26,29 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class JeuController {
 	
+	private final static int NB_JEUX_PAR_PAGE = 5;
+	
 	private final JeuService jeuService;
 	private final EditeurService editeurService;
 	private final GenreService genreService;
 	private final ClassificationService classificationService;
 	private final PlateFormeService plateformeService;
 	private final ModeleEconomiqueService modeleEconomiqueService;
+	private final HttpSession httpSession;
 	
 	@GetMapping("/jeux")
-	public ModelAndView jeuxGet() {
+	public ModelAndView jeuxGet(@PageableDefault(size = NB_JEUX_PAR_PAGE, sort = "nom") Pageable page, 
+			@RequestParam(name = "numPage", defaultValue = "0") int numPage,
+			@RequestParam(name = "sort", defaultValue = "nom") String sort) {
 		
 		// Déclaration.
-		ModelAndView mav = new ModelAndView("/jeux");
+		ModelAndView mav = new ModelAndView("jeux");
 		
 		// Récupère la liste de jeux depuis le service.
-		mav.addObject("jeux", jeuService.recupererJeux());
+		mav.addObject("jeux", jeuService.recupererJeux(page.withPage(numPage)));
+		mav.addObject("sort", sort);
+		
+		if (page != null) httpSession.setAttribute("numeroDePage", numPage);;
 		
 		return mav;
 	}
@@ -45,7 +56,7 @@ public class JeuController {
 	@GetMapping("/jeux/ajouter")
 	public ModelAndView jeuxAjouterGet(Jeu jeu) {
 		
-		ModelAndView mav = new ModelAndView("/jeux-ajouter");
+		ModelAndView mav = new ModelAndView("jeux-ajouter");
 		
 		mav.addObject("editeurs", editeurService.recupererEditeurs());
 		mav.addObject("genres", genreService.recupererGenres());
@@ -70,7 +81,7 @@ public class JeuController {
 		
 		jeuService.ajouterJeu(jeu);
 		
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/jeux");
 	}
 	
 	@GetMapping("/jeux/modifier")
