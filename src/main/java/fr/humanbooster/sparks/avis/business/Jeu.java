@@ -22,6 +22,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+// TODO : Virer les NoArgsConstructor inutiles.
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -36,7 +38,7 @@ public class Jeu {
 	@Column(unique = true, length = 32)
     private String nom;
 
-	@Size(min = 8, max = 255, message = "La description du jeu doit être comprise entre 8 et 255 caractères.")
+	@Size(min = 8, max = 1023, message = "La description du jeu doit être comprise entre 8 et 1024 caractères.")
     private String description;
 
     private LocalDate dateSortie;
@@ -71,5 +73,15 @@ public class Jeu {
     @ToString.Exclude
     @OneToMany(mappedBy = "jeu", fetch = FetchType.EAGER)
     private List<Avis> avis;
+    
+    /*
+     * Constructeur utilisé pour effectuer des tests.
+     */
+	public Jeu(String nom, String description, LocalDate dateSortie, String image) {
+		this.nom = nom;
+		this.description = description;
+		this.dateSortie = dateSortie;
+		this.image = image;
+	}
 
 }
