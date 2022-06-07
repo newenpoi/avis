@@ -12,27 +12,34 @@
     <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
 </head>
 <body>
-    <form method="post" action="/avis/ajouter">
-    	<p><c:if test="${param.erreur ne null}">${param.erreur}</c:if></p>
-        
-       	<label for="selectJeu">Jeu</label>
-        <select id="selectJeu" name="jeu">
-        	<c:forEach items="${jeux}" var="jeu">
-        		<option value="${jeu.id}">${jeu.nom}</option>
-        	</c:forEach>
-        </select>
-        
-        <label for="description">Description</label>
-        <textarea id="description" name="description" placeHolder="Votre avis doit contenir au moins huit caractères."></textarea>
-        
-        <label for="selectNote">Note</label>
-        <select name="note" id="selectNote">
-        	<c:forEach var="i" begin="0" end="20">
-        		<option value="${i}">${i}</option>
-        	</c:forEach>
-        </select>
-        
-        <input type="submit" value="Valider">
-    </form>
+	<div class="wrapper d-flex justify-content-center align-items-center h-100">
+	    <form method="post" action="/avis/ajouter" class="form-modal m-3">
+	    	<p><c:if test="${param.erreur ne null}">${param.erreur}</c:if></p>
+	        
+	        <div class="form-group mx-3 mb-3">
+		       	<label for="selectJeu">Jeu</label>
+		        <select class="form-control" id="selectJeu" name="jeu">
+		        	<c:forEach items="${jeux}" var="jeu">
+		        		<option value="${jeu.id}">${jeu.nom}</option>
+		        	</c:forEach>
+		        </select>
+	        </div>
+	        
+	        <div class="form-group mx-3 mb-3">
+	        	<label for="description">Description</label>
+	        	<textarea rows="8" class="form-control" id="description" name="description" placeHolder="Votre avis doit contenir au moins huit caractères."></textarea>
+	        </div>
+	        
+	        <div class="form-group mx-3 mb-3">
+	        	<label for="selectNote">Note</label>
+	        	<input class="form-control" type="number" min="0" step="0.5" max="20" name="note" placeHolder="Ex : 15.5 ou 16.">
+	        	<small id="noteHelp" class="form-text text-muted">Spécifiez la note / 20.</small>
+	        </div>
+	        
+	        <div class="form-group mx-3 mb-3">
+	        	<input class="btn btn-primary font-game w-100" type="submit" value="VALIDER">
+	        </div>
+	    </form>
+    </div>
 </body>
 </html>
