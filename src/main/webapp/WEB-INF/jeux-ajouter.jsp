@@ -86,6 +86,8 @@
 			<form:hidden path="moderateur" value="${sessionScope.utilisateur.id}" />
 			
 			<form:button class="btn btn-primary font-game font-size-custom text-uppercase w-100">Ajouter</form:button>
+			
+			<a class="btn btn-secondary font-game font-size-custom text-uppercase mt-3 w-100" href="/jeux" title="Retour">Revenir aux Jeux</a>
 		</form:form>
 	</div>
 </body>

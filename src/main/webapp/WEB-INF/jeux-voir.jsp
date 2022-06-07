@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +14,15 @@
 <body>
 	<div class="card border-0 mb-3">
 		<div class="card-img-wrapper">
-			<img class="card-img-top rounded-0" src="/img/jeux/andromeda.png" alt="Image du Jeu">
+			<img class="card-img-top rounded-0" src="/img/jeux/<c:if test="${jeu.image eq null}">nopreview.gif</c:if>" alt="Image du Jeu">
 		</div>
 		<div class="card-body">
-			<h5 class="card-title">Mass Effect Andromeda</h5>
-			<p class="card-text">Un jeu de science fiction qui vous plongera au coeur de l'aventure pour sauver la galaxie d'Andromède d'une terrible menace, les Kerts !</p>
+			<h5 class="card-title">${jeu.nom}</h5>
+			<p class="card-text">${jeu.description}</p>
 			<p class="card-text">
-				<small class="text-muted">Sorti le 21/03/2017</small>
+				<small class="text-muted">Sorti le ${jeu.dateSortie}</small>
 			</p>
+			<a href="/jeux" title="Retour">Revenir aux Jeux</a>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

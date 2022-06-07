@@ -9,9 +9,10 @@
     <title>Stargazer - Inscription</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+	<link rel="icon" type="image/x-icon" href="/img/favicon.png">
 </head>
 <body>
-	<div class="inscription d-flex justify-content-center align-items-center h-100">
+	<div class="wrapper inscription d-flex justify-content-center align-items-center h-100">
 		<form:form modelAttribute="joueur" method="post" action="/inscription" class="form-modal">
 			<div class="form-group mb-3">
 				<form:label path="pseudo" for="inputPseudo">Pseudo</form:label>

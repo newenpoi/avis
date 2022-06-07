@@ -29,6 +29,8 @@
 			</c:if>
 			
 			<li class="list-group-item"><a href="/avis?numPage=${avis.getTotalPages() - 1}&sort=${sort}" title="Fin">Fin</a></li>
+		
+			<li class="list-group-item"><a href="/avis/exporter" title="Exporter au format CSV" class="text-info">Exporter</a></li>
 		</ul>
 	</header>
 	<div class="wrapper-table">
